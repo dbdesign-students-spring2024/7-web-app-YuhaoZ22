@@ -1,15 +1,28 @@
-{% extends 'base.html' %} {% block container %}
-<h2>Create</h2>
-<p>Create a new record in the MongoDB database collection.</p>
-<form method="POST" action="{{ url_for('create_post') }}">
-  <p>Your name: <input type="text" id="fname" name="fname" /><br /></p>
-  <p>
-    Message:
-    <textarea type="text" id="fmessage" name="fmessage"></textarea>
+{% extends 'base.html' %}
+
+{% block container %}
+<h2>Design Your Coffee</h2>
+<p>Create your customized cup of coffee:</p>
+<form method="POST" action="{{ url_for('create') }}">
+  <p>Your Name: <input type="text" id="customer_name" name="customer_name" /><br /></p>
+  <p>Type of Coffee Beans: 
+    <select id="coffee_beans" name="coffee_beans">
+      <option value="Arabica">Arabica</option>
+      <option value="Robusta">Robusta</option>
+      <option value="Liberica">Liberica</option>
+    </select>
+  </p>
+  <p>Number of Shots: <input type="number" id="shots" name="shots" /><br /></p>
+  <p>Size of Cup: 
+    <select id="cup_size" name="cup_size">
+      <option value="Venti">Venti</option>
+      <option value="Grande">Grande</option>
+      <option value="Tall">Tall</option>
+    </select>
   </p>
   <p>
-    <a href="{{ url_for('read')}}">Cancel</a>
-    <input type="submit" name="post-btn" value="Post" />
+    <a href="{{ url_for('index')}}">Cancel</a>
+    <input type="submit" name="post-btn" value="Order Coffee" />
   </p>
 </form>
 {% endblock %}

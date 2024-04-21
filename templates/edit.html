@@ -1,18 +1,28 @@
-{% extends 'base.html' %} {% block container %}
-<h2>Update</h2>
-<p>Edit a record in the MongoDB database collection.</p>
-<form method="POST" action="{{ url_for('edit_post', mongoid=mongoid) }}">
-  <p>
-    Your name:
-    <input type="text" id="fname" name="fname" value="{{doc.name}}" /><br />
+{% extends 'base.html' %}
+
+{% block container %}
+<h2>Edit Your Coffee Design</h2>
+<p>Update your customized coffee design:</p>
+<form method="POST" action="{{ url_for('edit_post', mongoid=design._id) }}">
+  <p>Your Name: <input type="text" id="customer_name" name="customer_name" value="{{ design.customer_name }}" /><br /></p>
+  <p>Type of Coffee Beans: 
+    <select id="coffee_beans" name="coffee_beans">
+      <option value="Arabica" {% if design.coffee_beans == 'Arabica' %} selected {% endif %}>Arabica</option>
+      <option value="Robusta" {% if design.coffee_beans == 'Robusta' %} selected {% endif %}>Robusta</option>
+      <option value="Liberica" {% if design.coffee_beans == 'Liberica' %} selected {% endif %}>Liberica</option>
+    </select>
   </p>
-  <p>
-    Message:
-    <textarea id="fmessage" name="fmessage">{{doc.message}}</textarea>
+  <p>Number of Shots: <input type="number" id="shots" name="shots" value="{{ design.shots }}" /><br /></p>
+  <p>Cup Size: 
+    <select id="cup_size" name="cup_size">
+      <option value="Venti" {% if design.cup_size == 'Venti' %} selected {% endif %}>Venti</option>
+      <option value="Grande" {% if design.cup_size == 'Grande' %} selected {% endif %}>Grande</option>
+      <option value="Tall" {% if design.cup_size == 'Tall' %} selected {% endif %}>Tall</option>
+    </select>
   </p>
   <p>
     <a href="{{ url_for('read')}}">Cancel</a>
-    <input type="submit" name="post-btn" value="Save" />
+    <input type="submit" name="update-btn" value="Update" />
   </p>
 </form>
 {% endblock %}
